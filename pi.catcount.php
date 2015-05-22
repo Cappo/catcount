@@ -35,7 +35,9 @@ class Catcount {
 		//Database query
 		$this->EE->db->select('exp_category_posts.entry_id');
 		$this->EE->db->join('exp_channel_titles', 'exp_category_posts.entry_id = exp_channel_titles.entry_id' );
-		$this->EE->db->join('exp_channels', 'exp_channel_titles.channel_id = exp_channels.channel_id' );
+		if($channel != 0){
+			$this->EE->db->join('exp_channels', 'exp_channel_titles.channel_id = exp_channels.channel_id' );
+		}
 		$this->EE->db->where('cat_id', $cat_id);
 
 		if ($expired != 'yes'){
